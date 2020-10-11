@@ -30,6 +30,5 @@ app.use("/api/v1", user);
 app.use("/api/v1/ride", ride);
 
 app.listen(PORT, () => {
-
   console.log(`Server Started at PORT ${PORT}`);
 });
