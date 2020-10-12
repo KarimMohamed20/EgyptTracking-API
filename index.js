@@ -1,13 +1,18 @@
 const express = require("express");
+const app = express();
+const server = require('http').createServer(app)
+const io = require('socket.io')(server)
+const InitiateMongoServer = require("./config/db");
 const bodyParser = require("body-parser");
+
+
+// Routes
 const user = require("./routes/user");
 const ride = require("./routes/ride");
-const InitiateMongoServer = require("./config/db");
 
 // Initiate Mongo Server
 InitiateMongoServer();
 
-const app = express();
 
 // PORT
 const PORT = process.env.PORT || 3000;
@@ -24,11 +29,11 @@ app.get("/", (req, res) => {
  * Router - /api/v1/*
  * Method - *
  */
-
-// USER
 app.use("/api/v1", user);
 app.use("/api/v1/ride", ride);
 
-app.listen(PORT, () => {
+
+// Running server
+server.listen(PORT, () => {
   console.log(`Server Started at PORT ${PORT}`);
 });
