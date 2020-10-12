@@ -17,13 +17,14 @@ InitiateMongoServer();
 // PORT
 const PORT = process.env.PORT || 3000;
 
+
+io.on("connection",function(client){
+  console.log("\nYour Client Connected Successfully!\n" + client.id)
+})
+
+
 // Middleware
 app.use(bodyParser.json());
-
-app.get("/", (req, res) => {
-  res.json({ message: "Hello in Node Js!" });
-});
-
 /**
  * Router Middleware
  * Router - /api/v1/*
