@@ -5,7 +5,7 @@ module.exports = function (token) {
         if (!token) return resolve('error');
         try {
             const decoded = jwt.verify(token, process.env.PASSPORT_SECRET_KEY);
-            resolve(decoded.user)
+            resolve(decoded.user.id)
         } catch (e) {
             resolve('error')
             console.log({ message: "Invalid Token" });

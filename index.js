@@ -5,10 +5,12 @@ const io = require('socket.io')(server)
 const InitiateMongoServer = require("./config/db");
 const bodyParser = require("body-parser");
 
+// Websockets
+var rideWebsocket = require("./controllers/ride/websocket")
 
 // Routes
-const user = require("./routes/user");
-const ride = require("./routes/ride");
+const userRoute = require("./routes/user");
+const rideRoute = require("./routes/ride");
 
 // Initiate Mongo Server
 InitiateMongoServer();
@@ -17,10 +19,11 @@ InitiateMongoServer();
 // PORT
 const PORT = process.env.PORT || 3000;
 
+var ride = io.of("/ride")
 
-io.on("connection",function(client){
-  console.log("\nYour Client Connected Successfully!\n" + client.id)
-})
+rideWebsocket(ride)
+
+
 
 
 // Middleware
@@ -30,8 +33,8 @@ app.use(bodyParser.json());
  * Router - /api/v1/*
  * Method - *
  */
-app.use("/api/v1", user);
-app.use("/api/v1/ride", ride);
+app.use("/api/v1", userRoute);
+app.use("/api/v1/ride", rideRoute);
 
 
 // Running server
