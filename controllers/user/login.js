@@ -37,7 +37,7 @@ module.exports = async function(req,res) {
         payload,
         process.env.PASSPORT_SECRET_KEY,
         {
-          expiresIn: 3600
+          expiresIn: 31536000
         },
         (err, token) => {
           if (err) throw err;

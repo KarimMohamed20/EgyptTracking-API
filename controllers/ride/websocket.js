@@ -3,6 +3,7 @@ var User = require("../../model/User")
 var Ride = require("../../model/Ride")
 module.exports = function (ride) {
     ride.on("connection", async function (socket) {
+        console.log('connected')
 
         // AUTH
         var id = await wsAuth(socket.handshake.query.token);
@@ -21,6 +22,7 @@ module.exports = function (ride) {
                 if (ride == null) {
                     socket.disconnect()
                 } else {
+                    // socket.join(rideId)
                     console.log(ride)
                 }
             } else if (user.accountType == "Driver") {
@@ -29,13 +31,15 @@ module.exports = function (ride) {
 
                 var ride = await Ride.findOne({ _id: rideId, "driver.id": id }).catch((e) => { socket.disconnect() })
                 if (ride == null) {
+                    console.log('error')
                     socket.disconnect()
                 } else {
-                    socket.join()
+                    // socket.join(rideId)
                     console.log(ride)
                 }
             }
         } else {
+            console.log('error')
             socket.disconnect()
         }
     })
