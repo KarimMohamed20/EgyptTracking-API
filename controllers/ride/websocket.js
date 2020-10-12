@@ -16,14 +16,24 @@ module.exports = function (ride) {
             if (user.accountType == "Student") {
                 // Connected as a Student
                 console.log("Connected as a Student!")
-                var ride = await Ride.findOne({_id: rideId, 'students': {$in: [id]}})
-                console.log(ride)
+                var ride = await Ride.findOne({ _id: rideId, 'students': { $in: [id] } }).catch((e) => { socket.disconnect() })
+
+                if (ride == null) {
+                    socket.disconnect()
+                } else {
+                    console.log(ride)
+                }
             } else if (user.accountType == "Driver") {
                 // Connected as a Driver
                 console.log("Connected as a Driver!")
 
-                var ride = await Ride.findOne({_id: rideId, "driver.id": id})
-                console.log(ride)
+                var ride = await Ride.findOne({ _id: rideId, "driver.id": id }).catch((e) => { socket.disconnect() })
+                if (ride == null) {
+                    socket.disconnect()
+                } else {
+                    socket.join()
+                    console.log(ride)
+                }
             }
         } else {
             socket.disconnect()
