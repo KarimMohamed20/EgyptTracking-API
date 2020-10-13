@@ -9,9 +9,6 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  rideIds: {
-    type: Array,
-  },
   currentRideId: {
     type: String,
   },
@@ -24,11 +21,11 @@ const UserSchema = mongoose.Schema({
     required: true
   },
   lat: {
-    type: Number,
+    type: String,
     required: false
   },
   lng: {
-    type: Number,
+    type: String,
     required: false
   },
 },{

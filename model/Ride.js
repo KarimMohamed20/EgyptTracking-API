@@ -18,14 +18,18 @@ const RideSchema = mongoose.Schema({
     required: true
   },
   students: {
-      default: {},
-      type: mongoose.Schema.Types.Mixed,
+      default: [],
+      type: Array
+  },
+  studentsObjects: {
+    default:[],
+    type: Array
   },
   lastLat: {
-    type: Number,
+    type: String,
   },
   lastLng: {
-    type: Number,
+    type: String,
   }
 },{
   timestamps:true

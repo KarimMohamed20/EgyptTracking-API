@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c889f713-3b80-4959-b657-0bcccdc5dbd9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/ride/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ride/websocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/driver/ride/addStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/driver/ride/addStudent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/user/changeLocation.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/user/changeLocation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Ride.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Ride.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/User.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/user/changeLocation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+            <state relative-caret-position="465">
+              <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -63,7 +67,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -104,6 +108,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -142,12 +147,13 @@
       <workItem from="1602613452857" duration="138000" />
       <workItem from="1602613606513" duration="462000" />
       <workItem from="1602614165605" duration="59000" />
-      <workItem from="1602614239573" duration="267000" />
+      <workItem from="1602614239573" duration="569000" />
+      <workItem from="1602616179039" duration="3022000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="926000" />
+    <option name="totallyTimeSpent" value="4250000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -186,8 +192,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/user/changeLocation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+        <state relative-caret-position="465">
+          <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
         </state>
       </provider>
     </entry>

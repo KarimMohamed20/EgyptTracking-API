@@ -16,25 +16,27 @@ module.exports = async function (req, res) {
     } else {
 
 
-        ride.students[user._id] = {
-            'id': user._id,
-            "fullName": user.fullName,
-            "lat": user.lat,
-            "lng": user.lng
-        }
-
-
         if (user.currentRideId == ride._id) {
             user.currentRideId = null;
-            if (user.rideIds.includes(ride._id)) {
-                var rideIdIndex = user.rideIds.indexOf(ride._id);
-                user.rideIds.splice(rideIdIndex, 1)
-            }
+            var studentIdIndex = ride.students.indexOf(user._id);
+            ride.students.splice(studentIdIndex, 1)
+
+            var studentObjectIndex = ride.studentsObjects.indexOf({
+                id: user._id,
+                fullName: user.fullName,
+                lat: user.lat,
+                lng: user.lng
+            });
+            ride.studentsObjects.splice(studentObjectIndex, 1)
         } else {
             user.currentRideId = ride._id;
-            if (user.rideIds.includes(ride._id) != true) {
-                user.rideIds.push(ride._id);
-            }
+            ride.students.push(user._id)
+            ride.studentsObjects.push({
+                'id': user._id,
+                "fullName": user.fullName,
+                "lat": user.lat,
+                "lng": user.lng
+            })
 
         }
 
