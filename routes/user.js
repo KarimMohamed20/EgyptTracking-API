@@ -5,7 +5,8 @@ const auth = require("../middleware/auth");
 
 const login = require('../controllers/user/login')
 const register = require('../controllers/user/register')
-const me = require('../controllers/user/me')
+const me = require('../controllers/user/me');
+const changeLocation = require("../controllers/user/changeLocation");
 
 /**
  * @method - POST
@@ -50,5 +51,7 @@ router.post(
  */
 router.get("/me", auth, me);
 
+
+router.post("/change-location", auth, changeLocation);
 
 module.exports = router;
