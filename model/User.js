@@ -9,7 +9,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  rideId: {
+  rideIds: {
+    type: Array,
+  },
+  currentRideId: {
     type: String,
   },
   password: {

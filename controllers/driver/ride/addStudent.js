@@ -22,7 +22,20 @@ module.exports = async function (req, res) {
             "lat": user.lat,
             "lng": user.lng
         }
-        user.rideId = ride._id;
+        if (user.rideIds.includes(ride._id)) {
+            var rideIdIndex = user.rideIds.indexOf(ride._id);
+            user.rideIds.splice(rideIdIndex, 1)
+        } else {
+            user.rideIds.push(ride._id);
+        }
+
+        if (user.currentRideId == ride._id) {
+            user.currentRideId = null;
+        } else {
+            user.currentRideId = ride._id;
+
+        }
+
         user.save()
         await ride.save()
         res.json(ride);
