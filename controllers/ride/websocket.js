@@ -16,15 +16,12 @@ module.exports = function (ride) {
             if (user.accountType == "Student") {
                 // Connected as a Student
                 console.log("Connected as a Student!")
-                var rideObject = await Ride.findOne({ _id: rideId, 'students': { $in: [id] } }).catch((e) => { socket.disconnect() })
-
-                if (rideObject == null) {
+                var rideObject = await Ride.findOne({ _id: user.rideId, }).catch(e=>{socket.disconnect()})
+                
+                if (rideObject.students[user._id] == undefined) {
                     socket.disconnect()
                 } else {
-
-
-                    
-
+                    await socket.join(rideId)
                 }
             } else if (user.accountType == "Driver") {
                 // Connected as a Driver
@@ -36,13 +33,14 @@ module.exports = function (ride) {
                 } else {
 
                     await socket.join(rideId)
-                    socket.on('post', function (data) {
-                        console.log(data)
-                        ride.emit(rideId,data)
+                    socket.on('location', function (data) {
+                        ride.emit(rideId, data)
+                    });
+                    socket.on('arrive', function (data) {
+                        ride.emit(data.studentId, data)
                     });
                 }
             }
-
         } else {
             socket.disconnect()
         }
