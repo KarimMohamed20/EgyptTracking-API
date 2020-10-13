@@ -16,7 +16,7 @@ router.post(
   "/register",
   [
     check("fullName", "Please enter a valid name").isLength({
-      min: 4
+      min: 2
     }),
     check("email", "Please enter a valid email").isEmail(),
     check("password", "Please enter a valid password").isLength({

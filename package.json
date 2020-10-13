@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config index.js",
-    "debug": "nodemon --exec babel-node -r ./node_modules/dotenv/config index.js"
+    "restart": "nodemon --exec babel-node -r ./node_modules/dotenv/config index.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +17,8 @@
     "express-validator": "^6.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.2",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "sockjs": "^0.3.21"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
