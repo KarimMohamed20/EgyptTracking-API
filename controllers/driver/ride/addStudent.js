@@ -22,17 +22,19 @@ module.exports = async function (req, res) {
             "lat": user.lat,
             "lng": user.lng
         }
-        if (user.rideIds.includes(ride._id)) {
-            var rideIdIndex = user.rideIds.indexOf(ride._id);
-            user.rideIds.splice(rideIdIndex, 1)
-        } else {
-            user.rideIds.push(ride._id);
-        }
+
 
         if (user.currentRideId == ride._id) {
             user.currentRideId = null;
+            if (user.rideIds.includes(ride._id)) {
+                var rideIdIndex = user.rideIds.indexOf(ride._id);
+                user.rideIds.splice(rideIdIndex, 1)
+            }
         } else {
             user.currentRideId = ride._id;
+            if (user.rideIds.includes(ride._id) != true) {
+                user.rideIds.push(ride._id);
+            }
 
         }
 
