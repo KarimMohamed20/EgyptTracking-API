@@ -17,7 +17,7 @@ router.post("/create", [
   check("rideName", 'Please enter your ride name').exists(),
   check("started", 'Please enter is your ride started or not').isBoolean(),
   check("helperName", 'Please enter your helper name').exists(),
-],auth, create);
+], auth, create);
 
 
 /**

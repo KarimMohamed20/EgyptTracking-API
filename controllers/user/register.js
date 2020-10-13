@@ -1,4 +1,4 @@
-const {validationResult} = require("express-validator");
+const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs")
 const User = require("../../model/User")
 const jwt = require("jsonwebtoken")
@@ -21,9 +21,9 @@ module.exports = async function (req, res) {
             });
         }
 
-        if(accountType != "Student" && accountType != 'Driver') {
+        if (accountType != "Student" && accountType != 'Driver') {
             return res.status(500).json({
-                msg:"Please type a valid accountType"
+                msg: "Please type a valid accountType"
             })
         }
 

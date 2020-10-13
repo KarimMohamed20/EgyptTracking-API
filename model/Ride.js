@@ -18,11 +18,11 @@ const RideSchema = mongoose.Schema({
     required: true
   },
   students: {
-      default: [],
-      type: Array
+    default: [],
+    type: Array
   },
   studentsObjects: {
-    default:[],
+    default: [],
     type: Array
   },
   lastLat: {
@@ -31,8 +31,8 @@ const RideSchema = mongoose.Schema({
   lastLng: {
     type: String,
   }
-},{
-  timestamps:true
+}, {
+  timestamps: true
 });
 
 // export model ride with RideSchema

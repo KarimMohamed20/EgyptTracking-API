@@ -30,6 +30,6 @@ module.exports = async function (req, res) {
         res.status(401).json({ message: "You can't create ride with a student account" });
     } else {
         res.status(401).json({ message: "Error in Fetching user" });
-    } 
+    }
 
 }

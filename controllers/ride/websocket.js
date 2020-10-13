@@ -6,7 +6,7 @@ var Ride = require("../../model/Ride")
 module.exports = function (ride) {
     ride.on("connection", async function (socket) {
         let rideObject;
-// AUTH
+        // AUTH
         var id = await wsAuth(socket.handshake.query.token);
         var rideId = socket.handshake.query.rideId;
         if (id !== 'error') {
@@ -16,8 +16,8 @@ module.exports = function (ride) {
             if (user.accountType === "Student") {
                 // Connected as a Student
                 console.log("Connected as a Student!");
-                rideObject = await Ride.findOne({ _id: user.currentRideId, }).catch(e=>{socket.disconnect()});
-                
+                rideObject = await Ride.findOne({ _id: user.currentRideId, }).catch(e => { socket.disconnect() });
+
                 if (rideObject.students.includes(req.user.id) === false) {
                     socket.disconnect()
                 } else {
@@ -27,7 +27,7 @@ module.exports = function (ride) {
                 // Connected as a Driver
                 console.log("Connected as a Driver!");
 
-                rideObject = await Ride.findOne({_id: rideId, "driver.id": id}).catch((e) => {
+                rideObject = await Ride.findOne({ _id: rideId, "driver.id": id }).catch((e) => {
                     socket.disconnect()
                 });
                 if (rideObject == null) {

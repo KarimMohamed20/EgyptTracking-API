@@ -28,8 +28,8 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: false
   },
-},{
-  timestamps:true
+}, {
+  timestamps: true
 });
 
 // export model user with UserSchema
