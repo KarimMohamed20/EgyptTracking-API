@@ -5,29 +5,31 @@ var Ride = require("../../model/Ride")
 
 module.exports = function (ride) {
     ride.on("connection", async function (socket) {
-        // AUTH
+        let rideObject;
+// AUTH
         var id = await wsAuth(socket.handshake.query.token);
         var rideId = socket.handshake.query.rideId;
-        if (id != 'error') {
-
+        if (id !== 'error') {
             // GET USER
-            var user = await User.findById(id);
+            let user = await User.findById(id);
             // STUDENT OR DRIVER
-            if (user.accountType == "Student") {
+            if (user.accountType === "Student") {
                 // Connected as a Student
-                console.log("Connected as a Student!")
-                var rideObject = await Ride.findOne({ _id: user.currentRideId, }).catch(e=>{socket.disconnect()})
+                console.log("Connected as a Student!");
+                rideObject = await Ride.findOne({ _id: user.currentRideId, }).catch(e=>{socket.disconnect()});
                 
-                if (rideObject.students[user._id] == undefined) {
+                if (rideObject.students[user._id] === undefined) {
                     socket.disconnect()
                 } else {
                     await socket.join(rideId)
                 }
-            } else if (user.accountType == "Driver") {
+            } else if (user.accountType === "Driver") {
                 // Connected as a Driver
-                console.log("Connected as a Driver!")
+                console.log("Connected as a Driver!");
 
-                var rideObject = await Ride.findOne({ _id: rideId, "driver.id": id }).catch((e) => { socket.disconnect() })
+                rideObject = await Ride.findOne({_id: rideId, "driver.id": id}).catch((e) => {
+                    socket.disconnect()
+                });
                 if (rideObject == null) {
                     socket.disconnect()
                 } else {
@@ -45,4 +47,4 @@ module.exports = function (ride) {
             socket.disconnect()
         }
     })
-}
+};
