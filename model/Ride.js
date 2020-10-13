@@ -18,8 +18,8 @@ const RideSchema = mongoose.Schema({
     required: true
   },
   students: {
-      default: [],
-      type: Array,
+      default: {},
+      type: mongoose.Schema.Types.Mixed,
   },
   lastLat: {
     type: Number,

@@ -4,6 +4,7 @@ const auth = require("../middleware/auth");
 const create = require('../controllers/driver/ride/create')
 const start = require('../controllers/driver/ride/start')
 const get = require('../controllers/driver/ride/get')
+const studentGet = require('../controllers/user/ride/get')
 const addStudent = require('../controllers/driver/ride/addStudent')
 
 /**
@@ -41,4 +42,6 @@ router.put("/addStudent", auth, addStudent);
  * @param - /ride/get
  */
 router.get("/get", auth, get);
+
+router.get("/student/get", auth, studentGet);
 module.exports = router;
