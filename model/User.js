@@ -9,6 +9,9 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  rideId: {
+    type: String,
+  },
   password: {
     type: String,
     required: true

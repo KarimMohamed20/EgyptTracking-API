@@ -22,8 +22,8 @@ module.exports = async function (req, res) {
             "lat": user.lat,
             "lng": user.lng
         }
-
-
+        user.rideId = ride._id;
+        user.save()
         await ride.save()
         res.json(ride);
     }
