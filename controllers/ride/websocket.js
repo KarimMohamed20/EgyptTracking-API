@@ -16,7 +16,7 @@ module.exports = function (ride) {
             if (user.accountType == "Student") {
                 // Connected as a Student
                 console.log("Connected as a Student!")
-                var rideObject = await Ride.findOne({ _id: user.rideId, }).catch(e=>{socket.disconnect()})
+                var rideObject = await Ride.findOne({ _id: user.currentRideId, }).catch(e=>{socket.disconnect()})
                 
                 if (rideObject.students[user._id] == undefined) {
                     socket.disconnect()
