@@ -39,10 +39,10 @@ module.exports = async function (req, res) {
       {
         expiresIn: 31536000
       },
-      (err, token) => {
+      async (err, token) => {
         if (err) throw err;
         res.status(200).json({
-          token
+          token,user
         });
       }
     );
