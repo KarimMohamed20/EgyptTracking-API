@@ -10,7 +10,7 @@ module.exports = async function (req, res) {
         });
     }
 
-    const { fullName, email, password, accountType } = req.body;
+    const { fullName, email, password, accountType, lat, lng } = req.body;
     try {
         let user = await User.findOne({
             email
