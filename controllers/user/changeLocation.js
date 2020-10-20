@@ -8,13 +8,14 @@ module.exports = async function (req, res) {
     let ride = await Ride.findById(user.currentRideId).catch((e) => {
         console.log(e)
     });
-
-    var studentIdIndex = ride.students.indexOf(req.user.id);
-    console.log(ride.studentsObjects[studentIdIndex])
-    ride.studentsObjects[studentIdIndex].lat = currentLat;
-    ride.studentsObjects[studentIdIndex].lng = currentLng;
-    await ride.markModified('studentsObjects');
-    await ride.save()
+    if (ride != null) {
+        var studentIdIndex = ride.students.indexOf(req.user.id);
+        console.log(ride.studentsObjects[studentIdIndex])
+        ride.studentsObjects[studentIdIndex].lat = currentLat;
+        ride.studentsObjects[studentIdIndex].lng = currentLng;
+        await ride.markModified('studentsObjects');
+        await ride.save()
+    }
 
     user.lat = currentLat;
     user.lng = currentLng;
