@@ -31,7 +31,9 @@ module.exports = async function (req, res) {
             fullName,
             email,
             password,
-            accountType
+            accountType,
+            lat,
+            lng
         });
 
         const salt = await bcrypt.genSalt(10);
