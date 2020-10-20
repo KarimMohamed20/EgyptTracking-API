@@ -7,6 +7,7 @@ const login = require('../controllers/user/login')
 const register = require('../controllers/user/register')
 const me = require('../controllers/user/me');
 const changeLocation = require("../controllers/user/changeLocation");
+const getStudents = require("../controllers/driver/getAllStudents");
 
 /**
  * @method - POST
@@ -53,5 +54,7 @@ router.get("/me", auth, me);
 
 
 router.post("/change-location", auth, changeLocation);
+
+router.get("/students", auth, getStudents);
 
 module.exports = router;
