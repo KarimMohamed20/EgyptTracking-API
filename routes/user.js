@@ -55,6 +55,6 @@ router.get("/me", auth, me);
 
 router.post("/change-location", auth, changeLocation);
 
-router.get("/students", auth, getStudents);
+router.get("/students", getStudents);
 
 module.exports = router;
