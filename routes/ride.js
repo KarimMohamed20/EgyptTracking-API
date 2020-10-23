@@ -30,8 +30,8 @@ router.put("/start", auth, start);
 
 /**
  * @method - PUT
- * @description - Start Ride
- * @param - /ride/start?studentId=123&rideId=123
+ * @description - Add Student
+ * @param - /ride/addStudent?rideId=123&studentId=321
  */
 router.put("/addStudent", auth, addStudent);
 
