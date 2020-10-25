@@ -26,10 +26,10 @@ const RideSchema = mongoose.Schema({
     type: Array
   },
   lastLat: {
-    type: String,
+    type: Number,
   },
   lastLng: {
-    type: String,
+    type: Number,
   }
 }, {
   timestamps: true
