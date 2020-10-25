@@ -35,10 +35,13 @@ module.exports = function (ride) {
                 } else {
 
                     await socket.join(rideId)
+
                     socket.on('location', function (data) {
+                        // send location to rideId and listens to rideId from the client
                         ride.emit(rideId, data)
                     });
                     socket.on('arrive', function (data) {
+                        // arrive to studentId and listens to studentId from the client
                         ride.emit(data.studentId, data)
                     });
                 }
