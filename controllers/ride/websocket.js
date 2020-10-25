@@ -38,10 +38,12 @@ module.exports = function (ride) {
 
                     socket.on('location', function (data) {
                         // send location to rideId and listens to rideId from the client
+                        console.log(data)
                         ride.emit(rideId, data)
                     });
                     socket.on('arrive', function (data) {
                         // arrive to studentId and listens to studentId from the client
+                        console.log(data)
                         ride.emit(data.studentId, data)
                     });
                 }
