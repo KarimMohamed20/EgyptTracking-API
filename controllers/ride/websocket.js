@@ -40,11 +40,12 @@ module.exports = function (ride) {
                         // send location to rideId and listens to rideId from the client
                         console.log(data)
                         var coordinates = JSON.parse(data)
-
-                        rideObject.lastLat = coordinates.lat;
-                        rideObject.lastLng = coordinates.lng;
+                        if (coordinates.type == 'location') {
+                            rideObject.lastLat = coordinates.lat;
+                            rideObject.lastLng = coordinates.lng;
+                            rideObject.save()
+                        }
                         ride.emit(rideId, data)
-                        rideObject.save()
                     });
                     socket.on('arrive', function (data) {
                         // arrive to studentId and listens to studentId from the client
