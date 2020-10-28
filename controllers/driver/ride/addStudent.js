@@ -35,7 +35,8 @@ module.exports = async function (req, res) {
                 'id': user._id,
                 "fullName": user.fullName,
                 "lat": user.lat,
-                "lng": user.lng
+                "lng": user.lng,
+                "arrived":false
             })
 
         }
