@@ -7,7 +7,9 @@ module.exports = async function (req, res) {
         res.status(401).json({ message: "No ride found" });
     } else {
         ride.started = !ride.started;
-
+        for(var i = 0; i < ride.studentsObjects.length; i++){
+            
+        }
         await ride.save()
         res.json(ride);
     }

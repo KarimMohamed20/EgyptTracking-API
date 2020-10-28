@@ -9,6 +9,8 @@ module.exports = async function (req, res) {
     console.log(ride.students.includes(req.user.id))
     if (ride.students.includes(req.user.id) == false || ride.students.includes(req.user.id) == null || ride.students.includes(req.user.id) == undefined) {
         res.status(401).json({ message: "You don't have access to this ride" });
+    } else if (ride.started != true) {
+        res.json({'message':"Your ride didn't started yet"})
     } else {
         res.json(ride);
     }
