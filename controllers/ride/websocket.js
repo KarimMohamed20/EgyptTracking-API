@@ -39,9 +39,12 @@ module.exports = function (ride) {
                     socket.on('location', function (data) {
                         // send location to rideId and listens to rideId from the client
                         console.log(data)
-                        console.log(data.lat)
-                        
+                        var coordinates = JSON.parse(data)
+
+                        rideObject.lastLat = coordinates.lat;
+                        rideObject.lastLng = coordinates.lng;
                         ride.emit(rideId, data)
+                        rideObject.save()
                     });
                     socket.on('arrive', function (data) {
                         // arrive to studentId and listens to studentId from the client
