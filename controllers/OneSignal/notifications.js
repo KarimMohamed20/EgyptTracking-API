@@ -6,13 +6,13 @@ exports.sendMultipleNotifications = async function (emails, data) {
         await axios.post(
             "https://onesignal.com/api/v1/notifications",
             {
-                app_id: env.ONESIGNAL_APP_ID,
+                app_id: process.env.ONESIGNAL_APP_ID,
                 filters: [{ field: "email", key: email, value: email }],
                 headings: { en: data.header },
                 contents: { en: data.body },
             },
             {
-                headers: { Authorization: `Basic ${env.ONESIGNAL_API_KEY}` },
+                headers: { Authorization: `Basic ${process.env.ONESIGNAL_API_KEY}` },
             }
         );
     }
@@ -21,13 +21,13 @@ exports.sendNotification = async function (email, data) {
     await axios.post(
         "https://onesignal.com/api/v1/notifications",
         {
-            app_id: env.ONESIGNAL_APP_ID,
+            app_id: process.env.ONESIGNAL_APP_ID,
             filters: [{ field: "email", key: email, value: email }],
             headings: { en: data.header },
             contents: { en: data.body },
         },
         {
-            headers: { Authorization: `Basic ${env.ONESIGNAL_API_KEY}` },
+            headers: { Authorization: `Basic ${process.env.ONESIGNAL_API_KEY}` },
         }
     );
 
