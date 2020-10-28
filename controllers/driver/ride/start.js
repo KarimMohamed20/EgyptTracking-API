@@ -1,4 +1,5 @@
-const Ride = require("../../../model/Ride")
+const Ride = require("../../../model/Ride");
+const { sendNotification } = require("../../OneSignal/notifications");
 
 module.exports = async function (req, res) {
     //   request.user is getting fetched from Middleware after token authentication
@@ -7,8 +8,8 @@ module.exports = async function (req, res) {
         res.status(401).json({ message: "No ride found" });
     } else {
         ride.started = !ride.started;
-        for(var i = 0; i < ride.studentsObjects.length; i++){
-            
+        for (var i = 0; i < ride.studentsObjects.length; i++) {
+            await sendNotification(ride.studentsObjects[i]['email'], { header: `Captain ${ride.driver.fullName} started the ride.`, body: "Currently you can track this ride" })
         }
         await ride.save()
         res.json(ride);
