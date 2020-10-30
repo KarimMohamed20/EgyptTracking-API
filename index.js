@@ -11,6 +11,7 @@ var rideWebsocket = require("./controllers/ride/websocket")
 // Routes
 const userRoute = require("./routes/user");
 const rideRoute = require("./routes/ride");
+const chatRoute = require("./routes/chat");
 
 // Initiate Mongo Server
 InitiateMongoServer();
@@ -35,6 +36,7 @@ app.use(bodyParser.json());
  */
 app.use("/api/v1", userRoute);
 app.use("/api/v1/ride", rideRoute);
+app.use("/api/v1/chat", chatRoute);
 
 
 // Running server
