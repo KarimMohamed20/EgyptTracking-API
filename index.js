@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 
 // Websockets
 var rideWebsocket = require("./controllers/ride/websocket")
+var chatWebsocket = require("./controllers/chat/websocket")
 
 // Routes
 const userRoute = require("./routes/user");
@@ -21,8 +22,11 @@ InitiateMongoServer();
 const PORT = process.env.PORT || 3000;
 
 var ride = io.of("/ride")
-
 rideWebsocket(ride)
+
+
+var chat = io.of("/chat")
+chatWebsocket(chat)
 
 
 
