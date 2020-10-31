@@ -17,12 +17,14 @@ module.exports = function (ride) {
             if (user.accountType === "Student") {
                 // Connected as a Student
                 console.log("Connected as a Student!");
-                rideObject = await Ride.findOne({ _id: user.currentRideId, }).catch(e => { socket.disconnect() });
+                rideObject = await Ride.findOne({ _id: user.currentRideId, }).catch(e => { console.log("Disconnected"); socket.disconnect() });
                 
                 if (rideObject.students.includes(id) === false) {
+                    console.log("Doesn't contain this student")
                     socket.disconnect()
                 } else {
                     await socket.join(rideId)
+                    await socket.on('5f9d91e6a89fd47a80a6f999',(data)=> console.log("OK"+data))
                 }
             } else if (user.accountType === "Driver") {
                 // Connected as a Driver
@@ -46,6 +48,7 @@ module.exports = function (ride) {
                             rideObject.lastLng = coordinates.lng;
                             rideObject.save()
                         }
+                        console.log(rideId);
                         ride.emit(rideId, data)
                     });
                     socket.on('alert', function (data) {
@@ -54,7 +57,6 @@ module.exports = function (ride) {
                         var alert = JSON.parse(data)
                         console.log(alert)
                         ride.emit(alert.studentId, alert)
-                        socket.disconnect()
                     });
                 }
             }
