@@ -8,6 +8,6 @@ const chat = require('../controllers/chat/chat')
 
 router.post("/single", auth, chat.getSingleChat);
 
-router.post("/student/get", auth, chat.getMyChats);
+router.get("/student/get", auth, chat.getMyChats);
 
 module.exports = router;
