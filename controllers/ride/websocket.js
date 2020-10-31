@@ -47,10 +47,11 @@ module.exports = function (ride) {
                         }
                         ride.emit(rideId, data)
                     });
-                    socket.on('arrive', function (data) {
-                        // arrive to studentId and listens to studentId from the client
+                    socket.on('alert', function (data) {
+                        // alert to studentId and listens to studentId from the client
+                        var alert = JSON.parse(data)
                         console.log(data)
-                        ride.emit(data.studentId, data)
+                        ride.emit(alert.studentId, alert)
                     });
                 }
             }
