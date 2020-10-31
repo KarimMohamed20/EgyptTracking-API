@@ -50,7 +50,6 @@ module.exports = function (ride) {
                     socket.on('alert', function (data) {
                         // alert to studentId and listens to studentId from the client
                         var alert = JSON.parse(data)
-                        console.log(data)
                         ride.emit(alert.studentId, alert)
                     });
                 }
