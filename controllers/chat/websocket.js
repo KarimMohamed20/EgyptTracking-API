@@ -9,7 +9,8 @@ module.exports = function (chat) {
         let chatObject;
         // AUTH
         var id = await wsAuth(socket.handshake.query.token);
-        var chatId = socket.handshake.query.chatId;
+        var studentId = socket.handshake.query.studentId;
+        var driverId = socket.handshake.query.driverId;
         if (id != 'error') {
             // GET USER
             let user = await User.findById(id);
@@ -19,25 +20,27 @@ module.exports = function (chat) {
                 console.log("Connected as a Student!");
 
                 // Chat Info
-                chatObject = await Chat.findById(chatId).catch(e => { socket.disconnect() });
-                chatMessages = await ChatMessages.find({chatId: chatId})
+                chatObject = await Chat.findOne({ studentId: id, driverId: driverId }).catch(e => { socket.disconnect() });
+                var chatId = chatObject._id;
+                var chatMessages = await ChatMessages.findOne({ chatId: chatId})
                 await socket.join(chatId);
-                socket.on('message', function (data) {
+                socket.on('message', async function (data) {
                     console.log(data)
                     chatMessages.messages.push(JSON.parse(data))
                     chat.emit(chatId, data)
                     await chatMessages.save()
                 });
-                
+
             } else if (user.accountType === "Driver") {
                 // Connected as a Student
                 console.log("Connected as a Driver !");
-                
                 // Chat Info
-                chatObject = await Chat.findById(chatId).catch(e => { socket.disconnect() });
-                chatMessages = await ChatMessages.find({chatId: chatId})
+                chatObject = await Chat.findOne({ driverId: id, studentId: studentId }).catch(e => { socket.disconnect() });
+                console.log(chatObject)
+                var chatId = chatObject._id;
+                var chatMessages = await ChatMessages.findOne({ chatId: chatId })
                 await socket.join(chatId)
-                socket.on('message', function (data) {
+                socket.on('message', async function (data) {
                     console.log(data)
                     chatMessages.messages.push(JSON.parse(data))
                     chat.emit(chatId, data)
