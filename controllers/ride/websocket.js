@@ -9,6 +9,7 @@ module.exports = function (ride) {
         // AUTH
         var id = await wsAuth(socket.handshake.query.token);
         var rideId = socket.handshake.query.rideId;
+
         if (id !== 'error') {
             // GET USER
             let user = await User.findById(id);
@@ -17,7 +18,7 @@ module.exports = function (ride) {
                 // Connected as a Student
                 console.log("Connected as a Student!");
                 rideObject = await Ride.findOne({ _id: user.currentRideId, }).catch(e => { socket.disconnect() });
-
+                
                 if (rideObject.students.includes(id) === false) {
                     socket.disconnect()
                 } else {
@@ -26,16 +27,16 @@ module.exports = function (ride) {
             } else if (user.accountType === "Driver") {
                 // Connected as a Driver
                 console.log("Connected as a Driver!");
-
+                
                 rideObject = await Ride.findOne({ _id: rideId, "driver.id": id }).catch((e) => {
                     socket.disconnect()
                 });
                 if (rideObject == null) {
                     socket.disconnect()
                 } else {
-
+                    
                     await socket.join(rideId)
-
+                    
                     socket.on('location', function (data) {
                         // send location to rideId and listens to rideId from the client
                         console.log(data)
@@ -48,9 +49,12 @@ module.exports = function (ride) {
                         ride.emit(rideId, data)
                     });
                     socket.on('alert', function (data) {
+                        console.log(user.accountType)
                         // alert to studentId and listens to studentId from the client
                         var alert = JSON.parse(data)
+                        console.log(alert)
                         ride.emit(alert.studentId, alert)
+                        socket.disconnect()
                     });
                 }
             }
