@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const ChatSchema = mongoose.Schema({
+    driverName: {
+        type:String,
+        required: true
+    },
     driverId: {
         type: String,
         required: true
